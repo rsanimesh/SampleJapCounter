@@ -3,9 +3,11 @@ import { Colors } from '@/constants/Colors';
 import { useFocusEffect } from 'expo-router';
 import React, { useCallback, useState } from 'react';
 import { ActivityIndicator, FlatList, StyleSheet, Text, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { getPaginatedHistory, Session } from '../../services/database';
 
 export default function StatisticsScreen() {
+    const { t } = useTranslation();
     const [sessions, setSessions] = useState<Session[]>([]);
     const [offset, setOffset] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
@@ -70,7 +72,7 @@ export default function StatisticsScreen() {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.header}>Session History</Text>
+            <Text style={styles.header}>{t('statistics.title')}</Text>
             <FlatList
                 data={sessions}
                 renderItem={renderItem}
@@ -80,7 +82,7 @@ export default function StatisticsScreen() {
                 onEndReachedThreshold={0.5}
                 ListFooterComponent={renderFooter}
                 ListEmptyComponent={
-                    !isLoading ? <Text style={styles.emptyText}>No sessions recorded yet.</Text> : null
+                    !isLoading ? <Text style={styles.emptyText}>{t('statistics.noHistory')}</Text> : null
                 }
             />
         </View>

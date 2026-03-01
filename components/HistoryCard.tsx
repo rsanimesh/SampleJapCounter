@@ -2,6 +2,7 @@ import { Colors } from '@/constants/Colors';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 interface HistoryCardProps {
     date: string | number; // Timestamp or ISO string
@@ -11,6 +12,7 @@ interface HistoryCardProps {
 }
 
 export default function HistoryCard({ date, beadCount, malaCount, duration }: HistoryCardProps) {
+    const { t } = useTranslation();
     const dateObj = new Date(date);
 
     // Format: "Feb 8, Sat • 11:41 PM"
@@ -41,7 +43,7 @@ export default function HistoryCard({ date, beadCount, malaCount, duration }: Hi
             {/* Middle Section: The Hero (Beads) */}
             <View style={styles.heroSection}>
                 <Text style={styles.heroValue}>{(malaCount * 108) + beadCount}</Text>
-                <Text style={styles.heroLabel}>Beads</Text>
+                <Text style={styles.heroLabel}>{t('common.beads')}</Text>
             </View>
 
             {/* Divider */}
@@ -52,7 +54,7 @@ export default function HistoryCard({ date, beadCount, malaCount, duration }: Hi
                 {/* Malas */}
                 <View style={styles.statItem}>
                     <MaterialCommunityIcons name="dots-hexagon" size={20} color={Colors.dark.tint} />
-                    <Text style={styles.statText}>{malaCount} Malas</Text>
+                    <Text style={styles.statText}>{malaCount} {t('common.mala')}</Text>
                 </View>
 
                 {/* Duration */}

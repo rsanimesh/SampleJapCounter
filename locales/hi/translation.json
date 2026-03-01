@@ -1,0 +1,53 @@
+{
+    "common": {
+        "save": "सहेजें",
+        "cancel": "रद्द करें",
+        "loading": "लोड हो रहा है...",
+        "success": "सफलता",
+        "error": "त्रुटि",
+        "ok": "ठीक है",
+        "beads": "मनके",
+        "mala": "माला"
+    },
+    "home": {
+        "startJap": "जाप शुरू करें",
+        "totalJaps": "कुल जाप",
+        "todayJaps": "आज के जाप",
+        "lastSession": "पिछला सत्र",
+        "noSessions": "अभी तक कोई सत्र नहीं"
+    },
+    "tabs": {
+        "home": "होम",
+        "statistics": "सांख्यिकी",
+        "settings": "सेटिंग्स"
+    },
+    "jap": {
+        "saveSession": "सत्र सहेजें",
+        "reset": "रीसेट",
+        "beadCount": "मनकों की संख्या",
+        "malaCount": "माला की संख्या",
+        "completed": "माला पूरी हुई!",
+        "tapToCount": "गिनने के लिए कहीं भी टैप करें",
+        "sessionSaved": "सत्र सफलतापूर्वक सहेजा गया!"
+    },
+    "settings": {
+        "title": "सेटिंग्स",
+        "profile": "प्रोफ़ाइल",
+        "name": "नाम",
+        "namePlaceholder": "अपना नाम दर्ज करें",
+        "preferences": "प्राथमिकताएं",
+        "vibration": "कंपन",
+        "language": "भाषा",
+        "saveSettings": "सेटिंग्स सहेजें",
+        "settingsSaved": "सेटिंग्स सफलतापूर्वक सहेजी गईं!",
+        "failedToSave": "सेटिंग्स सहेजने में विफल।"
+    },
+    "statistics": {
+        "title": "इतिहास और सांख्यिकी",
+        "allTime": "पूरा समय",
+        "recent": "हाल के सत्र",
+        "totalMalas": "कुल मालाएं",
+        "averagePerDay": "औसत जाप/दिन",
+        "noHistory": "कोई इतिहास उपलब्ध नहीं है"
+    }
+}

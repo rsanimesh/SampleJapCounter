@@ -3,12 +3,13 @@ import { File, Paths } from 'expo-file-system';
 export interface SettingsData {
     userName: string;
     vibrationEnabled: boolean;
-    // soundEnabled removed as per requirement
+    language: 'en' | 'hi';
 }
 
 export const DEFAULT_SETTINGS: SettingsData = {
     userName: '',
     vibrationEnabled: true, // Default to true
+    language: 'en',
 };
 
 const settingsFile = new File(Paths.document, 'user_settings.json');

@@ -3,10 +3,20 @@ import { Stack } from "expo-router";
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import { initDB } from '../services/database';
+import { loadSettings } from '../services/settings';
+import '../i18n'; // Initialize i18n
+import i18n from '../i18n';
 
 export default function RootLayout() {
   useEffect(() => {
     initDB();
+
+    // Load persisted language
+    loadSettings().then((settings) => {
+      if (settings.language && settings.language !== i18n.language) {
+        i18n.changeLanguage(settings.language);
+      }
+    });
   }, []);
 
   return (

@@ -6,6 +6,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Alert, Dimensions, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Svg, { Circle, G } from 'react-native-svg';
+import { useTranslation } from 'react-i18next';
 import { addSession } from '../services/database';
 
 const { width } = Dimensions.get('window');
@@ -16,6 +17,7 @@ const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
 const BEADS_PER_MALA = 108;
 
 export default function JapPageScreen() {
+    const { t } = useTranslation();
     const router = useRouter();
     const navigation = useNavigation();
     const insets = useSafeAreaInsets();
@@ -194,7 +196,7 @@ export default function JapPageScreen() {
                     {/* Center Text */}
                     <View style={styles.centerTextContainer}>
                         <Text style={styles.countText}>{beadCount}</Text>
-                        <Text style={styles.malaText}>Mala: {malaCount}</Text>
+                        <Text style={styles.malaText}>{t('jap.malaCount')}: {malaCount}</Text>
                         <Text style={styles.timerText}>{formatTime(elapsedSeconds)}</Text>
                     </View>
                 </View>
@@ -210,7 +212,7 @@ export default function JapPageScreen() {
                         }}
                     >
                         <View style={styles.saveButton}>
-                            <Text style={styles.saveButtonText}>Save Session</Text>
+                            <Text style={styles.saveButtonText}>{t('jap.saveSession')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>

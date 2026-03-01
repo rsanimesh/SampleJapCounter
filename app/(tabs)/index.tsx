@@ -3,9 +3,11 @@ import { Colors } from '@/constants/Colors';
 import { useFocusEffect, useRouter } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { getAllTimeStats, getStatsForDate } from '../../services/database';
 
 export default function HomeScreen() {
+    const { t } = useTranslation();
     const router = useRouter();
     const [todayStats, setTodayStats] = useState({ totalBeads: 0, totalMalas: 0 });
     const [allTimeStats, setAllTimeStats] = useState({ totalBeads: 0, totalMalas: 0 });
@@ -38,15 +40,15 @@ export default function HomeScreen() {
             {/* Section B: Stats Dashboard */}
             <Pressable onPress={() => router.push('/statistics')} style={styles.statsContainer}>
                 <StatsCard
-                    title="Todays Jap"
+                    title={t('home.todayJaps')}
                     count={todayStats.totalBeads.toString()}
-                    subtext={`${todayStats.totalMalas} Malas`}
+                    subtext={`${todayStats.totalMalas} ${t('common.mala')}`}
                     style={styles.card}
                 />
                 <StatsCard
-                    title="Total Jap"
+                    title={t('home.totalJaps')}
                     count={allTimeStats.totalBeads.toString()}
-                    subtext={`${allTimeStats.totalMalas} Malas`}
+                    subtext={`${allTimeStats.totalMalas} ${t('common.mala')}`}
                     style={styles.card}
                 />
             </Pressable>
@@ -58,7 +60,7 @@ export default function HomeScreen() {
                     style={styles.buttonIcon}
                     resizeMode="contain"
                 />
-                <Text style={styles.startButtonText}>Start Jap</Text>
+                <Text style={styles.startButtonText}>{t('home.startJap')}</Text>
             </Pressable>
         </View>
     );

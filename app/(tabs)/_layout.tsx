@@ -1,10 +1,11 @@
 import { Colors } from '@/constants/Colors';
 import { Tabs } from 'expo-router';
+import { useTranslation } from 'react-i18next';
 
 import Ionicons from '@expo/vector-icons/Ionicons';
 
-
 export default function TabLayout() {
+    const { t } = useTranslation();
     return (
         <Tabs
             screenOptions={{
@@ -28,7 +29,7 @@ export default function TabLayout() {
             <Tabs.Screen
                 name="index"
                 options={{
-                    title: 'Home',
+                    title: t('tabs.home'),
                     tabBarIcon: ({ color, focused }) => (
                         <Ionicons name={focused ? 'home-sharp' : 'home-outline'} color={color} size={24} />
                     ),
@@ -37,7 +38,7 @@ export default function TabLayout() {
             <Tabs.Screen
                 name="statistics"
                 options={{
-                    title: 'Statistics',
+                    title: t('tabs.statistics'),
                     tabBarIcon: ({ color, focused }) => (
                         <Ionicons name={focused ? 'bar-chart' : 'bar-chart-outline'} color={color} size={24} />
                     ),
@@ -46,7 +47,7 @@ export default function TabLayout() {
             <Tabs.Screen
                 name="settings"
                 options={{
-                    title: 'Settings',
+                    title: t('tabs.settings'),
                     tabBarIcon: ({ color, focused }) => (
                         <Ionicons name={focused ? 'settings' : 'settings-outline'} color={color} size={24} />
                     ),

@@ -4,8 +4,11 @@ import { useFocusEffect } from 'expo-router';
 import React, { useCallback, useState } from 'react';
 import { Alert, ScrollView, StyleSheet, Switch, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from '../../components/LanguageSwitcher';
 
 export default function SettingsScreen() {
+    const { t, i18n } = useTranslation();
     const insets = useSafeAreaInsets();
     const [settings, setSettings] = useState<SettingsData>(DEFAULT_SETTINGS);
     const [loading, setLoading] = useState(true);
@@ -31,10 +34,10 @@ export default function SettingsScreen() {
     const saveSettings = async () => {
         try {
             await saveSettingsService(settings);
-            Alert.alert('Success', 'Settings saved successfully!');
+            Alert.alert(t('common.success'), t('settings.settingsSaved'));
         } catch (error) {
             console.error('Error saving settings:', error);
-            Alert.alert('Error', 'Failed to save settings.');
+            Alert.alert(t('common.error'), t('settings.failedToSave'));
         }
     };
 
@@ -45,25 +48,25 @@ export default function SettingsScreen() {
     if (loading) {
         return (
             <View style={[styles.container, styles.center]}>
-                <Text>Loading settings...</Text>
+                <Text>{t('common.loading')}</Text>
             </View>
         );
     }
 
     return (
         <ScrollView style={[styles.container, { paddingTop: insets.top }]} contentContainerStyle={styles.contentContainer}>
-            <Text style={styles.headerTitle}>Settings</Text>
+            <Text style={styles.headerTitle}>{t('settings.title')}</Text>
 
             {/* Profile Section */}
             <View style={styles.section}>
-                <Text style={styles.sectionTitle}>Profile</Text>
+                <Text style={styles.sectionTitle}>{t('settings.profile')}</Text>
                 <View style={styles.inputContainer}>
-                    <Text style={styles.label}>Name</Text>
+                    <Text style={styles.label}>{t('settings.name')}</Text>
                     <TextInput
                         style={styles.input}
                         value={settings.userName}
                         onChangeText={(text) => updateSetting('userName', text)}
-                        placeholder="Enter your name"
+                        placeholder={t('settings.namePlaceholder')}
                         placeholderTextColor={Colors.dark.textSecondary}
                     />
                 </View>
@@ -71,10 +74,10 @@ export default function SettingsScreen() {
 
             {/* Preferences Section */}
             <View style={styles.section}>
-                <Text style={styles.sectionTitle}>Preferences</Text>
+                <Text style={styles.sectionTitle}>{t('settings.preferences')}</Text>
                 <View style={styles.card}>
                     <View style={styles.row}>
-                        <Text style={styles.rowLabel}>Vibration</Text>
+                        <Text style={styles.rowLabel}>{t('settings.vibration')}</Text>
                         <Switch
                             value={settings.vibrationEnabled}
                             onValueChange={(val) => updateSetting('vibrationEnabled', val)}
@@ -82,13 +85,21 @@ export default function SettingsScreen() {
                             thumbColor={settings.vibrationEnabled ? Colors.dark.text : Colors.dark.tabIconDefault}
                         />
                     </View>
+
+                    <LanguageSwitcher
+                        currentLanguage={settings.language || 'en'}
+                        onLanguageChange={(val) => {
+                            updateSetting('language', val);
+                            i18n.changeLanguage(val);
+                        }}
+                    />
                     {/* Sound option removed */}
                 </View>
             </View>
 
             {/* Footer */}
             <TouchableOpacity style={styles.saveButton} onPress={saveSettings} activeOpacity={0.8}>
-                <Text style={styles.saveButtonText}>Save Settings</Text>
+                <Text style={styles.saveButtonText}>{t('settings.saveSettings')}</Text>
             </TouchableOpacity>
 
         </ScrollView>
