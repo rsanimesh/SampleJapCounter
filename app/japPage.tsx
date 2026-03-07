@@ -40,7 +40,7 @@ export default function JapPageScreen() {
     );
 
     // Derived values
-    const progress = beadCount / BEADS_PER_MALA;
+    const progress = (BEADS_PER_MALA - beadCount) / BEADS_PER_MALA;
     const strokeDashoffset = CIRCUMFERENCE - (progress * CIRCUMFERENCE);
 
     // Format time helper
@@ -195,7 +195,8 @@ export default function JapPageScreen() {
 
                     {/* Center Text */}
                     <View style={styles.centerTextContainer}>
-                        <Text style={styles.countText}>{beadCount}</Text>
+                        <Text style={styles.countText}>{BEADS_PER_MALA - beadCount}</Text>
+                        <Text style={styles.malaText}>{t('jap.beadCount')}: {(malaCount * BEADS_PER_MALA) + beadCount}</Text>
                         <Text style={styles.malaText}>{t('jap.malaCount')}: {malaCount}</Text>
                         <Text style={styles.timerText}>{formatTime(elapsedSeconds)}</Text>
                     </View>
